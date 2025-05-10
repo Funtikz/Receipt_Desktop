@@ -241,64 +241,60 @@ public class mainMenuController implements Initializable {
         try {
             List<Recipe> recipes = dao.getAllRecipes();
 
-            if (recipes == null || recipes.isEmpty()) {
-                System.out.println("Рецепты не найдены.");
-                return;
-            }
-
             recipesContainer.getChildren().clear();
 
-            int columns = 3; // теперь 3 карточки в ряд
+            int columns = 3;
             int row = 0;
             int col = 0;
 
-            for (Recipe recipe : recipes) {
-                if (recipe.getImage() == null) continue;
+            if (recipes != null && !recipes.isEmpty()) {
+                for (Recipe recipe : recipes) {
+                    if (recipe.getImage() == null) continue;
 
-                AnchorPane pane = new AnchorPane();
-                pane.setPrefSize(190, 190);
-                pane.setStyle("-fx-background-color: #fafafa; -fx-border-color: black; -fx-border-radius: 14;");
+                    AnchorPane pane = new AnchorPane();
+                    pane.setPrefSize(190, 190);
+                    pane.setStyle("-fx-background-color: #fafafa; -fx-border-color: black; -fx-border-radius: 14;");
 
-                // Картинка
-                ImageView imageView = new ImageView(new Image(new ByteArrayInputStream(recipe.getImage())));
-                imageView.setFitHeight(135);
-                imageView.setPreserveRatio(true);
+                    ImageView imageView = new ImageView(new Image(new ByteArrayInputStream(recipe.getImage())));
+                    imageView.setFitHeight(135);
+                    imageView.setPreserveRatio(true);
 
-                StackPane imageContainer = new StackPane(imageView);
-                imageContainer.setLayoutX(0);
-                imageContainer.setLayoutY(0);
-                imageContainer.setPrefSize(190, 135);
+                    StackPane imageContainer = new StackPane(imageView);
+                    imageContainer.setLayoutX(0);
+                    imageContainer.setLayoutY(0);
+                    imageContainer.setPrefSize(190, 135);
 
-                // Категория и Название, по центру
-                Text categoryText = new Text(addRecipeController.getCategoryNameById(recipe.getCategoryId()));
-                categoryText.setStyle("-fx-font-size: 15px;");
+                    Text categoryText = new Text(addRecipeController.getCategoryNameById(recipe.getCategoryId()));
+                    categoryText.setStyle("-fx-font-size: 15px;");
 
-                Text nameText = new Text(recipe.getName());
-                nameText.setStyle("-fx-font-size: 15px;");
+                    Text nameText = new Text(recipe.getName());
+                    nameText.setStyle("-fx-font-size: 15px;");
 
-                Button moreButton = new Button("Подробнее");
-                moreButton.setStyle("-fx-background-color: #F8E171; -fx-background-radius: 10; -fx-font-size: 12px;");
-                moreButton.setOnAction(e -> openRecipeDetails(recipe));
+                    Button moreButton = new Button("Подробнее");
+                    moreButton.setStyle("-fx-background-color: #F8E171; -fx-background-radius: 10; -fx-font-size: 12px;");
+                    moreButton.setOnAction(e -> openRecipeDetails(recipe));
 
-                VBox textBox = new VBox(5, categoryText, nameText, moreButton);
-                textBox.setLayoutX(0);
-                textBox.setLayoutY(135);
-                textBox.setPrefWidth(190);
-                textBox.setStyle("-fx-alignment: center;");
-                textBox.setAlignment(Pos.CENTER);
+                    VBox textBox = new VBox(5, categoryText, nameText, moreButton);
+                    textBox.setLayoutX(0);
+                    textBox.setLayoutY(135);
+                    textBox.setPrefWidth(190);
+                    textBox.setStyle("-fx-alignment: center;");
+                    textBox.setAlignment(Pos.CENTER);
 
+                    pane.getChildren().addAll(imageContainer, textBox);
+                    recipesContainer.add(pane, col, row);
 
-                pane.getChildren().addAll(imageContainer, textBox);
-                recipesContainer.add(pane, col, row);
-
-                col++;
-                if (col == columns) {
-                    col = 0;
-                    row++;
+                    col++;
+                    if (col == columns) {
+                        col = 0;
+                        row++;
+                    }
                 }
+            } else {
+                System.out.println("Рецепты не найдены.");
             }
 
-            // Добавить кнопку
+            // Кнопка "Добавить рецепт"
             AnchorPane addPane = new AnchorPane();
             addPane.setPrefSize(190, 190);
             addPane.setStyle("-fx-background-color: #fafafa; -fx-border-color: black; -fx-border-radius: 14;");
@@ -317,6 +313,7 @@ public class mainMenuController implements Initializable {
             e.printStackTrace();
         }
     }
+
 
     private void openRecipeDetails(Recipe recipe) {
         try {
