@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="644.0" prefWidth="931.0" style="-fx-background-color: F8E171;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.recipebook.firstRecipeDarkController">
+    <children>
+        <AnchorPane layoutY="55.0" onMouseClicked="#get" prefHeight="590.0" prefWidth="931.0" style="-fx-background-color: gray;">
+            <children>
+                <Text fill="WHITE" layoutX="367.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Греческий салат" wrappingWidth="175.99994506835924">
+                    <font>
+                        <Font name="System Bold" size="21.0" />
+                    </font>
+                </Text>
+                <AnchorPane fx:id="recipeFoodButton" layoutX="85.0" layoutY="95.0" prefHeight="118.0" prefWidth="174.0" style="-fx-background-color: gray; -fx-border-color: fafafa; -fx-border-radius: 14;">
+                    <children>
+                        <ImageView fitHeight="135.0" fitWidth="190.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../pictures/pngwing.com.png" />
+                            </image>
+                        </ImageView>
+                    </children>
+                </AnchorPane>
+                <Text fill="WHITE" layoutX="311.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Помидоры 2 шт.   Огурцы 2 шт.    Лук  Соль  1 чл.л    Перец 1 ст.л   Мясо 5 кг" wrappingWidth="111.51596069335938">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Text>
+                <Text fill="WHITE" layoutX="308.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Список ингридиентов:" wrappingWidth="294.3999389648436">
+                    <font>
+                        <Font name="System Bold" size="21.0" />
+                    </font>
+                </Text>
+
+
+                <Text fill="WHITE" layoutX="296.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Инструкция по приготовлению:" wrappingWidth="339.9999145507811">
+                    <font>
+                        <Font name="System Bold" size="21.0" />
+                    </font>
+                </Text>
+                <Text fill="WHITE" layoutX="308.0" layoutY="301.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Порезать помидоры, огурцы, лук, соль,перец и мясо кубиками.    Пожарить на сковороде на сильном огне 2 часа.     Перемешать и жарить еще 1 час.   Заказать готовую еду в доставке.    Выложить салат на тарелку и украсить на ваше усмотрение.     Похвастаться маме." wrappingWidth="333.9159240722656">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                </Text>
+                <Text fill="WHITE" layoutX="97.0" layoutY="255.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Категория: Салат" wrappingWidth="135.99994506835924">
+                    <font>
+                        <Font name="System Bold" size="21.0" />
+                    </font>
+                </Text>
+                <Button layoutX="78.0" layoutY="295.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="192.0" style="-fx-background-color: gray; -fx-border-radius: 14; -fx-border-color: fafafa;" text="Добавить в избранное" textFill="WHITE" />
+                <Button fx:id="mainMenuDarkButton" layoutX="765.0" layoutY="13.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="146.0" style="-fx-background-color: F8E171; -fx-background-radius: 10;" text="Рецепты">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                </Button>
+                <Button fx:id="deleteButton" layoutX="765.0" layoutY="395.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="146.0" style="-fx-background-color: F8E171; -fx-background-radius: 10;" text="Удалить">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                </Button>
+                <Button fx:id="editDarkButton" layoutX="765.0" layoutY="444.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="146.0" style="-fx-background-color: F8E171; -fx-background-radius: 10;" text="Редактировать">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                </Button>
+            </children>
+        </AnchorPane>
+        <Label layoutX="67.0" layoutY="14.0" prefHeight="27.0" prefWidth="221.0" text="КулинарныйПутеводитель">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Label>
+        <ImageView fitHeight="45.0" fitWidth="46.0" layoutX="11.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../pictures/logoRecipeBook.png" />
+            </image>
+        </ImageView>
+    </children>
+</AnchorPane>

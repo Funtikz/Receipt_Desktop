@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="644.0" prefWidth="931.0" style="-fx-background-color: F8E171;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.recipebook.editRecipeController">
+    <children>
+        <AnchorPane layoutY="55.0" onMouseClicked="#get" prefHeight="590.0" prefWidth="931.0" style="-fx-background-color: fafafa;">
+            <children>
+                <!-- Контейнер для изображения и кнопки -->
+                <VBox alignment="CENTER" spacing="10" layoutX="85.0" layoutY="95.0">
+                    <!-- Изображение -->
+                    <ImageView fx:id="recipeImageView" fitHeight="135.0" fitWidth="190.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@../../../pictures/pngwing.com.png" />
+                        </image>
+                    </ImageView>
+
+                    <!-- Кнопка под изображением -->
+                    <Button fx:id="chooseImageButton" text="Изменить фото" />
+                </VBox>
+
+                <Text layoutX="308.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Список ингредиентов:" wrappingWidth="294.4">
+                    <font>
+                        <Font name="System Bold" size="21.0" />
+                    </font>
+                </Text>
+
+                <Text layoutX="296.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Инструкция по приготовлению:" wrappingWidth="340.0">
+                    <font>
+                        <Font name="System Bold" size="21.0" />
+                    </font>
+                </Text>
+
+                <Button fx:id="mainMenuButton" layoutX="765.0" layoutY="13.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="146.0" style="-fx-background-color: F8E171; -fx-background-radius: 10;" text="Рецепты" onAction="#onMainMenuClicked">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                </Button>
+
+                <Button fx:id="saveButton" layoutX="765.0" layoutY="520.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="146.0" style="-fx-background-color: F8E171; -fx-background-radius: 10;" text="Сохранить">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                </Button>
+
+                <!-- Поле названия рецепта -->
+                <TextArea fx:id="recipeNameField" layoutX="304.0" layoutY="31.0" prefHeight="50.0" prefWidth="417.0" promptText="Название рецепта" />
+
+                <!-- Поле ингредиентов -->
+                <TextArea fx:id="ingredientsField" layoutX="308.0" layoutY="119.0" prefHeight="114.0" prefWidth="409.0" promptText="Ингредиенты" />
+
+                <!-- Поле инструкции -->
+                <TextArea fx:id="instructionsField" layoutX="304.0" layoutY="295.0" prefHeight="163.0" prefWidth="410.0" promptText="Инструкция" />
+
+                <Text layoutX="802.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Категории">
+                    <font>
+                        <Font size="15.0" />
+                    </font>
+                </Text>
+
+                <AnchorPane layoutX="747.0" layoutY="72.0" prefHeight="6.0" prefWidth="176.0" style="-fx-background-color: F8E171;" />
+
+                <VBox layoutX="794.0" layoutY="119.0" prefHeight="204.0" prefWidth="82.0">
+                    <children>
+                        <RadioButton fx:id="dessert" mnemonicParsing="false" text="Десерт">
+                            <toggleGroup>
+                                <ToggleGroup fx:id="category"/>
+                            </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="breakfast" mnemonicParsing="false" text="Завтрак" toggleGroup="$category" />
+                        <RadioButton fx:id="lunch" mnemonicParsing="false" text="Обед" toggleGroup="$category" />
+                        <RadioButton fx:id="dinner" mnemonicParsing="false" text="Ужин" toggleGroup="$category" />
+                        <RadioButton fx:id="salad" mnemonicParsing="false" text="Салат" toggleGroup="$category" />
+                    </children>
+                </VBox>
+            </children>
+        </AnchorPane>
+
+        <Label layoutX="67.0" layoutY="14.0" prefHeight="27.0" prefWidth="221.0" text="Кулинарный Путеводитель">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Label>
+
+        <ImageView fitHeight="45.0" fitWidth="46.0" layoutX="11.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../pictures/logoRecipeBook.png" />
+            </image>
+        </ImageView>
+    </children>
+</AnchorPane>

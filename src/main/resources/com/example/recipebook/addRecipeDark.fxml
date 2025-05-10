@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="644.0" prefWidth="931.0" style="-fx-background-color: F8E171;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.recipebook.addRecipeDarkController">
+    <children>
+        <AnchorPane layoutY="55.0" onMouseClicked="#get" prefHeight="590.0" prefWidth="931.0" style="-fx-background-color: gray;">
+            <children>
+                <Text fill="WHITE" layoutX="308.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Название" wrappingWidth="103.99994506835924">
+                    <font>
+                        <Font name="System Bold" size="21.0" />
+                    </font>
+                </Text>
+                <AnchorPane fx:id="recipeFoodButton" layoutX="77.0" layoutY="100.0" prefHeight="126.0" prefWidth="192.0" style="-fx-background-color: gray; -fx-border-color: fafafa; -fx-border-radius: 14;">
+                    <children>
+                        <Text layoutX="52.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </Text>
+                    </children>
+                </AnchorPane>
+                <Text fill="WHITE" layoutX="308.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Список ингридиентов:" wrappingWidth="294.3999389648436">
+                    <font>
+                        <Font name="System Bold" size="21.0" />
+                    </font>
+                </Text>
+                <Text fill="WHITE" layoutX="296.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Инструкция по приготовлению:" wrappingWidth="339.9999145507811">
+                    <font>
+                        <Font name="System Bold" size="21.0" />
+                    </font>
+                </Text>
+                <Text layoutX="97.0" layoutY="255.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="135.99994506835924">
+                    <font>
+                        <Font name="System Bold" size="21.0" />
+                    </font>
+                </Text>
+                <Button fx:id="mainMenuButton" layoutX="765.0" layoutY="13.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="146.0" style="-fx-background-color: F8E171; -fx-background-radius: 10;" text="Рецепты">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                </Button>
+                <Button fx:id="saveButton" layoutX="765.0" layoutY="520.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="146.0" style="-fx-background-color: F8E171; -fx-background-radius: 10;" text="Сохранить">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                </Button>
+                <TextArea layoutX="308.0" layoutY="119.0" prefHeight="114.0" prefWidth="409.0" promptText="Введите список ингридиентов" />
+                <TextArea layoutX="304.0" layoutY="295.0" prefHeight="163.0" prefWidth="410.0" promptText="Введите инструкцию по приготовлению" />
+                <Text fill="WHITE" layoutX="802.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Категории">
+                    <font>
+                        <Font size="15.0" />
+                    </font>
+                </Text>
+                <AnchorPane layoutX="747.0" layoutY="72.0" prefHeight="6.0" prefWidth="176.0" style="-fx-background-color: F8E171;" />
+                <VBox layoutX="794.0" layoutY="119.0" prefHeight="204.0" prefWidth="82.0">
+                    <children>
+                        <RadioButton fx:id="dessert" mnemonicParsing="false" prefHeight="27.0" prefWidth="60.0" text="Десерт" textFill="#fcfcfc">
+                            <toggleGroup>
+                                <ToggleGroup fx:id="category" />
+                            </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="breakfast" mnemonicParsing="false" prefHeight="26.0" prefWidth="65.0" text="Завтрак" textFill="#fcfcfc" toggleGroup="$category" />
+                        <RadioButton fx:id="lunch" mnemonicParsing="false" prefHeight="26.0" prefWidth="51.0" text="Обед" textFill="WHITE" toggleGroup="$category" />
+                        <RadioButton fx:id="dinner" mnemonicParsing="false" prefHeight="30.0" prefWidth="52.0" text="Ужин" textFill="WHITE" toggleGroup="$category" />
+                        <RadioButton fx:id="salad" mnemonicParsing="false" prefHeight="25.0" prefWidth="54.0" text="Салат" textFill="WHITE" toggleGroup="$category" />
+                        <Button fx:id="addNewCategoryBut" mnemonicParsing="false" prefHeight="27.0" prefWidth="108.0" style="-fx-background-color: gray; -fx-border-radius: 14; -fx-border-color: fafafa;" text="Добавить" textFill="#f4f4f4" />
+                    </children>
+                </VBox>
+                <ImageView fx:id="deleteCategory" fitHeight="19.0" fitWidth="19.0" layoutX="892.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../pictures/pngwing.com%20(1).png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="deleteCategory1" fitHeight="19.0" fitWidth="19.0" layoutX="892.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../pictures/pngwing.com%20(1).png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="deleteCategory11" fitHeight="19.0" fitWidth="19.0" layoutX="892.0" layoutY="176.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../pictures/pngwing.com%20(1).png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="deleteCategory12" fitHeight="19.0" fitWidth="19.0" layoutX="892.0" layoutY="204.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../pictures/pngwing.com%20(1).png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="deleteCategory13" fitHeight="19.0" fitWidth="19.0" layoutX="892.0" layoutY="232.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../pictures/pngwing.com%20(1).png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="editCategoryBut" fitHeight="20.0" fitWidth="19.0" layoutX="867.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../pictures/pngwing.com%20(2).png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="editCategoryBut1" fitHeight="20.0" fitWidth="19.0" layoutX="867.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../pictures/pngwing.com%20(2).png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="editCategoryBut11" fitHeight="20.0" fitWidth="19.0" layoutX="867.0" layoutY="176.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../pictures/pngwing.com%20(2).png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="editCategoryBut12" fitHeight="20.0" fitWidth="19.0" layoutX="867.0" layoutY="204.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../pictures/pngwing.com%20(2).png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="editCategoryBut13" fitHeight="20.0" fitWidth="19.0" layoutX="867.0" layoutY="232.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../pictures/pngwing.com%20(2).png" />
+                    </image>
+                </ImageView>
+                <TextArea layoutX="304.0" layoutY="32.0" prefHeight="39.0" prefWidth="410.0" promptText="Введите название" />
+                <Text fill="WHITE" layoutX="89.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Добавить фото:" wrappingWidth="166.3999389648436">
+                    <font>
+                        <Font name="System Bold" size="21.0" />
+                    </font>
+                </Text>
+            <Button fx:id="addPhotoButton" layoutX="76.0" layoutY="243.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="192.0" style="-fx-background-color: gray; -fx-border-radius: 14; -fx-border-color: fafafa;" text="Добавить фото" textFill="WHITE" />
+            </children>
+        </AnchorPane>
+        <Label layoutX="67.0" layoutY="14.0" prefHeight="27.0" prefWidth="221.0" text="КулинарныйПутеводитель">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Label>
+        <ImageView fitHeight="45.0" fitWidth="46.0" layoutX="11.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../pictures/logoRecipeBook.png" />
+            </image>
+        </ImageView>
+    </children>
+</AnchorPane>
