@@ -11,9 +11,11 @@ import java.util.ResourceBundle;
 
 import com.example.recipebook.bd.DBConnection;
 import com.example.recipebook.bd.RecipeDAO;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -23,6 +25,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+
+import static com.example.recipebook.mainMenuController.applyFontToAllNodes;
 
 public class addRecipeController {
 
@@ -118,7 +122,16 @@ public class addRecipeController {
 
     @FXML
     void initialize() {
-
+        // Применяем шрифт сразу при загрузке сцены
+        Platform.runLater(() -> {
+            String currentFont = AppSettings.getInstance().getFontName(); // Получаем шрифт из настроек
+            if (currentFont != null) { // Если шрифт выбран
+                Scene scene = ((Node) recipeNameTextArea).getScene(); // Получаем сцену через любой элемент
+                if (scene != null) {
+                    applyFontToAllNodes(scene.getRoot(), currentFont);
+                }
+            }
+        });
     }
 
 

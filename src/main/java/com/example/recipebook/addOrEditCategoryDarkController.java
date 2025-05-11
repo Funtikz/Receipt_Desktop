@@ -25,6 +25,7 @@ public class addOrEditCategoryDarkController {
         assert inputCategory != null : "fx:id=\"inputCategory\" was not injected: check your FXML file 'addOrEditCategoryDark.fxml'.";
         assert saveAddOrEditCategory != null : "fx:id=\"saveAddOrEditCategory\" was not injected: check your FXML file 'addOrEditCategoryDark.fxml'.";
 
+
     }
 
 }

@@ -2,9 +2,11 @@ package com.example.recipebook;
 
 import com.example.recipebook.bd.RecipeDAO;
 import com.example.recipebook.model.Recipe;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -20,6 +22,8 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.sql.SQLException;
+
+import static com.example.recipebook.mainMenuController.applyFontToAllNodes;
 
 public class editRecipeController {
 
@@ -151,6 +155,15 @@ public class editRecipeController {
 
             } catch (SQLException | IOException e) {
                 e.printStackTrace();
+            }
+        });
+        Platform.runLater(() -> {
+            String currentFont = AppSettings.getInstance().getFontName(); // Получаем шрифт из настроек
+            if (currentFont != null) { // Если шрифт выбран
+                Scene scene = ((Node) mainMenuButton).getScene(); // Получаем сцену через любой элемент
+                if (scene != null) {
+                    applyFontToAllNodes(scene.getRoot(), currentFont);
+                }
             }
         });
     }

@@ -74,6 +74,11 @@
 
                 <!-- Кнопки для действий -->
                 <Button fx:id="addFavoriteButton" layoutX="78.0" layoutY="295.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="192.0" style="-fx-background-color: fafafa; -fx-border-radius: 14; -fx-border-color: black;" text="Добавить в избранное" onAction="#onAddToFavoritesClicked"/>
+                <Button fx:id="removeFavoriteButton" layoutX="78.0" layoutY="340.0" mnemonicParsing="false"
+                        prefHeight="35.0" prefWidth="192.0"
+                        style="-fx-background-color: fafafa; -fx-border-radius: 14; -fx-border-color: black;"
+                        text="Удалить из избранного" onAction="#onRemoveFromFavoritesClicked"/>
+
                 <Button fx:id="mainMenuButton" layoutX="765.0" layoutY="13.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="146.0" style="-fx-background-color: F8E171; -fx-background-radius: 10;" text="Рецепты" onAction="#onMainMenuClicked">
                     <font>
                         <Font size="16.0" />

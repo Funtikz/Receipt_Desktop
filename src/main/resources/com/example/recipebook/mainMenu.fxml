@@ -16,6 +16,8 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="644.0" prefWidth="931.0" style="-fx-background-color: F8E171;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.recipebook.mainMenuController">
     <children>
         <AnchorPane layoutY="55.0" onMouseClicked="#get" prefHeight="590.0" prefWidth="931.0" style="-fx-background-color: fafafa;">
@@ -25,7 +27,7 @@
                         <Font size="16.0" />
                     </font>
                 </Button>
-                <Button fx:id="favoriteButton" layoutX="765.0" layoutY="63.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="146.0" style="-fx-background-color: F8E171; -fx-background-radius: 10;" text="Избранное">
+                <Button fx:id="favoriteButton" layoutX="765.0" layoutY="63.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="146.0" style="-fx-background-color: F8E171; -fx-background-radius: 10;" text="Избранное" onAction="#onFavoriteButtonClicked">
                     <font>
                         <Font size="16.0" />
                     </font>
@@ -49,7 +51,20 @@
                         <Font size="15.0" />
                     </font>
                 </Text>
-                <ChoiceBox fx:id="fontSelection" layoutX="747.0" layoutY="438.0" prefHeight="27.0" prefWidth="167.0" style="-fx-background-color: fafafa; -fx-border-color: silver; -fx-border-radius: 3;" />
+                <ChoiceBox fx:id="fontSelection" layoutX="747.0" layoutY="438.0" prefHeight="27.0" prefWidth="167.0" style="-fx-background-color: fafafa; -fx-border-color: silver; -fx-border-radius: 3;">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="System"/>
+                            <String fx:value="TimesNewRoman"/>
+                            <String fx:value="Arial"/>
+                            <String fx:value="Verdana"/>
+                            <String fx:value="Courier New"/>
+                            <String fx:value="Comic Sans MS"/>
+                        </FXCollections>
+                    </items>
+                </ChoiceBox>
+
+
                 <Text layoutX="753.0" layoutY="434.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Шрифт" />
                 <Text layoutX="753.0" layoutY="478.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Цвет темы" />
                 <Text layoutX="801.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Категории">
@@ -57,11 +72,12 @@
                         <Font size="15.0" />
                     </font>
                 </Text>
-                <Text layoutX="340.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Рецепты" wrappingWidth="89.60001220703111">
-                    <font>
+                <Text fx:id="pageTitle" layoutX="340.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Рецепты" wrappingWidth="150">
+                <font>
                         <Font size="21.0" />
                     </font>
                 </Text>
+
                 <ScrollPane layoutX="20.0" layoutY="70.0" prefWidth="700.0" prefHeight="480.0" fitToWidth="true" pannable="true">
                     <content>
                         <GridPane fx:id="recipesContainer" hgap="20" vgap="20" />
@@ -96,11 +112,14 @@
                         <RadioButton fx:id="darkTheme" mnemonicParsing="false" text="Темный" toggleGroup="$theme" />
                     </children>
                 </HBox>
-                <Button fx:id="finallyButton1" layoutX="758.0" layoutY="525.0" mnemonicParsing="false" onMouseClicked="#getFontSelection" prefHeight="27.0" prefWidth="146.0" style="-fx-background-color: F8E171; -fx-background-radius: 10;" text="Применить">
+                <Button fx:id="finallyButton1" layoutX="758.0" layoutY="525.0" mnemonicParsing="false"
+                        prefHeight="27.0" prefWidth="146.0" style="-fx-background-color: F8E171; -fx-background-radius: 10;"
+                        text="Применить" onAction="#onFontApplyClicked">
                     <font>
                         <Font size="16.0" />
                     </font>
                 </Button>
+
             </children>
         </AnchorPane>
         <Label layoutX="67.0" layoutY="14.0" prefHeight="27.0" prefWidth="221.0" text="КулинарныйПутеводитель">

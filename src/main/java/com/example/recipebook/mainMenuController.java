@@ -7,8 +7,11 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import com.example.recipebook.bd.FavoriteDAO;
 import com.example.recipebook.bd.RecipeDAO;
+import com.example.recipebook.bd.Session;
 import com.example.recipebook.model.Recipe;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,10 +20,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -28,6 +28,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -130,24 +131,90 @@ public class mainMenuController implements Initializable {
         loadRecipes();
     }
 
-    // Обработка кнопки "Применить" (если будете использовать в будущем)
     @FXML
     void getFontSelection(MouseEvent event) {
-        // здесь можно применить шрифт, если вы это реализуете
+        String selectedFont = fontSelection.getValue();
+
+        System.out.println("Выбранный шрифт в getFontSelection: " + selectedFont);
+        if (selectedFont != null) {
+            AppSettings.getInstance().setFontName(selectedFont);
+
+            Parent root = ((Node) event.getSource()).getScene().getRoot();
+            applyFontToAllNodes(root, selectedFont);
+        }
     }
+
+
+
 
 
     // Обработка кнопки "Рецепты"
     @FXML
     void onMainMenuClicked(ActionEvent event) {
+        pageTitle.setText("Рецепты"); // ← Вернуть надпись
         loadRecipes();
     }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         fontSelection.getItems().addAll("System", "TimesNewRoman");
         loadRecipes();
+        // Применяем шрифт сразу при загрузке сцены
+        Platform.runLater(() -> {
+            String currentFont = AppSettings.getInstance().getFontName();
+            if (currentFont != null) {
+                Scene scene = ((Node) fontSelection).getScene();
+                if (scene != null) {
+                    applyFontToAllNodes(scene.getRoot(), currentFont);
+                }
+            }
+        });
     }
+
+
+    public static void applyFontToAllNodes(Parent parent, String fontName) {
+        System.out.println("Применение шрифта: " + fontName);  // Логируем при применении шрифта
+
+        for (Node node : parent.lookupAll("*")) {
+            if (node instanceof Labeled labeled) {
+                if (!labeled.fontProperty().isBound()) {
+                    System.out.println("Применяем шрифт к Labeled: " + labeled.getText());
+                    labeled.setFont(Font.font(fontName, labeled.getFont().getSize()));
+                }
+            } else if (node instanceof TextInputControl tic) {
+                if (!tic.fontProperty().isBound()) {
+                    System.out.println("Применяем шрифт к TextInputControl.");
+                    tic.setFont(Font.font(fontName, tic.getFont().getSize()));
+                }
+            } else if (node instanceof Text textNode) {
+                if (!textNode.fontProperty().isBound()) {
+                    System.out.println("Применяем шрифт к Text: " + textNode.getText());
+                    textNode.setFont(Font.font(fontName, textNode.getFont().getSize()));
+                }
+            }
+        }
+    }
+
+
+    @FXML
+    void onFontApplyClicked(ActionEvent event) {
+        String selectedFont = fontSelection.getValue();
+        if (selectedFont != null) {
+            System.out.println("Шрифт выбран: " + selectedFont); // Логирование для проверки
+            AppSettings.getInstance().setFontName(selectedFont);
+
+            Parent root = ((Node) event.getSource()).getScene().getRoot();
+            applyFontToAllNodes(root, selectedFont);
+        } else {
+            System.out.println("Шрифт не выбран!"); // Если ничего не выбрано
+        }
+    }
+
+
+
+
+
 
     @FXML
     void onCategoryChanged(ActionEvent event) throws SQLException {
@@ -313,6 +380,35 @@ public class mainMenuController implements Initializable {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    private Text pageTitle;
+
+    @FXML
+    void onFavoriteButtonClicked(ActionEvent event) {
+        pageTitle.setText("Избранное");
+        loadFavoriteRecipes(Session.getUserId());
+    }
+
+
+
+
+    private void loadFavoriteRecipes(int userId) {
+        FavoriteDAO favoriteDAO = new FavoriteDAO();
+        RecipeDAO recipeDAO = new RecipeDAO();
+        try {
+            List<String> favoriteNames = favoriteDAO.getFavoritesByUser(userId);
+            List<Recipe> allRecipes = recipeDAO.getAllRecipes();
+            List<Recipe> favoriteRecipes = allRecipes.stream()
+                    .filter(r -> favoriteNames.contains(r.getName()))
+                    .toList();
+            displayRecipes(favoriteRecipes);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
 
     private void openRecipeDetails(Recipe recipe) {

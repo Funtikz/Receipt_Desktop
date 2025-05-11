@@ -10,9 +10,11 @@ import com.example.recipebook.bd.FavoriteDAO;
 import com.example.recipebook.bd.RecipeDAO;
 import com.example.recipebook.bd.Session;
 import com.example.recipebook.model.Recipe;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -23,6 +25,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
+import static com.example.recipebook.mainMenuController.applyFontToAllNodes;
 
 public class firstRecipeController {
 
@@ -70,6 +74,42 @@ public class firstRecipeController {
     private Recipe currentRecipe;
     private int currentUserId = Session.getUserId();  // Идентификатор текущего пользователя, например, его можно передавать через setter
 
+
+    @FXML
+    private Button removeFavoriteButton;
+
+    @FXML
+    private void onRemoveFromFavoritesClicked(ActionEvent event) {
+        if (currentRecipe != null && currentUserId > 0) {
+            try {
+                FavoriteDAO favoriteDAO = new FavoriteDAO();
+                favoriteDAO.removeFavorite(currentUserId, currentRecipe.getId());
+
+                Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+                successAlert.setTitle("Успех");
+                successAlert.setHeaderText(null);
+                successAlert.setContentText("Рецепт \"" + currentRecipe.getName() + "\" был удален из избранного.");
+                successAlert.showAndWait();
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                errorAlert.setTitle("Ошибка");
+                errorAlert.setHeaderText(null);
+                errorAlert.setContentText("Произошла ошибка при удалении рецепта из избранного.");
+                errorAlert.showAndWait();
+            }
+        } else {
+            Alert warningAlert = new Alert(Alert.AlertType.WARNING);
+            warningAlert.setTitle("Предупреждение");
+            warningAlert.setHeaderText(null);
+            warningAlert.setContentText("Рецепт или пользователь не выбран.");
+            warningAlert.showAndWait();
+        }
+    }
+
+
     @FXML
     private void onAddToFavoritesClicked(ActionEvent event) {
         if (currentRecipe != null && currentUserId > 0) {
@@ -112,6 +152,15 @@ public class firstRecipeController {
         assert mainMenuButton != null : "fx:id=\"mainMenuButton\" was not injected: check your FXML file 'firstRecipe.fxml'.";
         assert recipeFoodButton != null : "fx:id=\"recipeFoodButton\" was not injected: check your FXML file 'firstRecipe.fxml'.";
 
+        Platform.runLater(() -> {
+            String currentFont = AppSettings.getInstance().getFontName(); // Получаем шрифт из настроек
+            if (currentFont != null) { // Если шрифт выбран
+                Scene scene = ((Node) mainMenuButton).getScene(); // Получаем сцену через любой элемент
+                if (scene != null) {
+                    applyFontToAllNodes(scene.getRoot(), currentFont);
+                }
+            }
+        });
     }
 
 
